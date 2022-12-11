@@ -5,6 +5,7 @@ public with sharing class BoatDataService {
     @AuraEnabled(cacheable=true)
     public static List<Boat__c> getBoats(string boatTypeId)
     {
+        System.debug('DropDown Boat Type Id: ' + boatTypeId);
         List<Boat__c> allBoats = new List<Boat__c>();
         if(String.isBlank(boatTypeId))
         {
@@ -25,6 +26,7 @@ public with sharing class BoatDataService {
                                 where BoatType__c =: boatTypeId
                                 ] ;
         }
+        system.debug(allBoats);
         return allBoats;
                                 
     }

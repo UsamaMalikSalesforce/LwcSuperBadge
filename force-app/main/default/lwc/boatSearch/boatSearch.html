@@ -3,19 +3,44 @@
       <!-- Top -->
       <lightning-layout-item size="12">
         <lightning-card title="Find a Boat">
-          <!-- New Boat button goes here -->
-          <lightning-button label="New Boat" title="New Boat"  class="slds-m-left_x-small"></lightning-button>
+            <!-- New Boat button goes here -->
+            <lightning-button label="New Boat" title="New Boat" slot="actions"  class="slds-m-left_x-small"></lightning-button>
+
+            <lightning-layout multiple-rows="true">
+                
+                
+            </lightning-layout>
+
           <p class="slds-var-p-horizontal_small">
             <!-- boatSearchForm component goes here -->
-            <c-boat-search-form class="slds-show slds-is-relative"></c-boat-search-form>
-          </p>
+            <c-boat-search-form onsearch={handleSearchBoats} class=""></c-boat-search-form>
+        </p>
         </lightning-card>
       </lightning-layout-item>
+      
       <!-- Bottom -->
       <lightning-layout-item size="12" class="slds-p-top_small slds-is-relative">
         <!-- Spinner goes here -->
+        <div if:true={isLoading} class="slds-is-relative">
+            <lightning-spinner alternative-text="Loading">
+            </lightning-spinner>
+        </div>
         <!-- boatSearchResults goes here -->
         <!-- onloading={handleLoading} ondoneloading={handleDoneLoading} -->
+        <lightning-layout-item size="12">
+            <template for:each={returnedBoats} for:item="boat">
+                
+                <c-boat-tile
+                 key={boat.Id}
+                 boat={boat}
+                 >
+
+                </c-boat-tile>
+                <!-- <p key={boat.id}>
+                     {boat.Name}
+                </p> -->
+           </template>
+          </lightning-layout-item>
       </lightning-layout-item>
     </lightning-layout>
   </template>
